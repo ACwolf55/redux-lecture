@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import './header.css'
 
 const Header = (props) => {
@@ -19,7 +20,7 @@ const Header = (props) => {
         <p>MARKET</p>
       </div>
 
-      <h1 className="user">WELCOME, {props.user}!</h1>
+      <h1 className="user">WELCOME, {props.username}!</h1>
 
       <Link className="cart-hold" to="/cart">
         <img
@@ -32,4 +33,9 @@ const Header = (props) => {
     </header>
   )
 }
-export default withRouter(Header)
+
+function mapStateToProps(reduxState) {
+  return reduxState.user
+}
+
+export default connect(mapStateToProps)(withRouter(Header))
